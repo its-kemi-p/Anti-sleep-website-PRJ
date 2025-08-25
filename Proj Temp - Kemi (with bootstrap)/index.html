@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+   
 </head>
 <body>
     <div class="container-fluid">
@@ -18,7 +19,8 @@
                     <h4 class="sidebar-heading px-3 mt-4 mb-3 text-muted">Anti-Sleep Glasses</h4>
                     <ul class="nav flex-column">
                         <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Live Status</a></li>
+                      <li class="nav-item"><a class="nav-link" href="livestatus.html">Live Status</a></li>
+
                         <li class="nav-item"><a class="nav-link" href="#">Session Summary</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Charts</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
@@ -165,6 +167,38 @@
                         </table>
                     </div>
                 </div>
+
+                <!-- Live Status Tab -->
+                <div id="liveStatusDashboard">
+                     <h3>Live Status</h3>
+                             <div class="d-flex gap-3 mt-3">
+                                 <div>
+          <strong>Connection:</strong>
+          <span id="liveConnectionStatus" class="badge bg-secondary">Loading...</span>
+      </div>
+      <div>
+          <strong>Alert:</strong>
+          <span id="liveCurrentAlert" class="badge bg-secondary">Loading...</span>
+      </div>
+  </div>
+  <canvas id="liveBlinksChart" class="mt-4"></canvas>
+  <canvas id="liveHeadMovementsChart" class="mt-4"></canvas>
+
+  <table id="liveSessionTable" class="table table-hover mt-3">
+      <thead>
+          <tr>
+              <th>Date</th>
+              <th>Duration</th>
+              <th>Alerts</th>
+              <th>Status</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Populated dynamically -->
+      </tbody>
+  </table>
+</div>
+
             </main>
         </div>
     </div>
@@ -175,5 +209,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Custom JS -->
     <script src="script.js"></script>
+
+    <script src="stylelive.css"></script>
 </body>
 </html>
