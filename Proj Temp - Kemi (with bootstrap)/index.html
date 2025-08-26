@@ -1,206 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anti-Sleep Dashboard</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
-   
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-                <div class="position-sticky pt-3">
-                    <h4 class="sidebar-heading px-3 mt-4 mb-3 text-muted">Anti-Sleep Glasses</h4>
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
-                      <li class="nav-item"><a class="nav-link" href="livestatus.html">Live Status</a></li>
+      <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+          <div class="position-sticky pt-3">
+            <h4 class="sidebar-heading px-3 mt-4 mb-3 text-muted">
+              Anti-Sleep Glasses
+            </h4>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="livestatus.html">Live Status</a>
+              </li>
 
-                        <li class="nav-item"><a class="nav-link" href="#">Session Summary</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Charts</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-                    </ul>
+              <li class="nav-item">
+                <a class="nav-link" href="drivingSummary.html"
+                  >Session Summary</a
+                >
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#">Charts</a></li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Settings</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <!-- Top Navbar -->
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">Anti-Sleep Dashboard</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  Notifications
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  Messages
+                </button>
+              </div>
+              <div class="dropdown">
+                <button
+                  class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                  type="button"
+                  id="userDropdown"
+                  data-bs-toggle="dropdown"
+                >
+                  User
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status Cards -->
+          <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <h5 class="card-title">Connection Status</h5>
+                    <span id="connectionStatus" class="badge bg-success"
+                      >Connected</span
+                    >
+                  </div>
+                  <p class="card-text">
+                    Glasses are connected via Bluetooth/WiFi.
+                  </p>
                 </div>
-            </nav>
-
-            <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <!-- Top Navbar -->
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Anti-Sleep Dashboard</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Notifications</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Messages</button>
-                        </div>
-                        <div class="dropdown">
-                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                                User
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <h5 class="card-title">Current Alert</h5>
+                    <span id="currentAlert" class="badge bg-warning"
+                      >No Drowsiness</span
+                    >
+                  </div>
+                  <p class="card-text">Real-time drowsiness detection.</p>
                 </div>
-
-                <!-- Status Cards -->
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="card-title">Connection Status</h5>
-                                    <span id="connectionStatus" class="badge bg-success">Connected</span>
-                                </div>
-                                <p class="card-text">Glasses are connected via Bluetooth/WiFi.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="card-title">Current Alert</h5>
-                                    <span id="currentAlert" class="badge bg-warning">No Drowsiness</span>
-                                </div>
-                                <p class="card-text">Real-time drowsiness detection.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <h5 class="card-title">Today Alerts</h5>
-                                <h2 class="card-text">5</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <h5 class="card-title">Total Alerts</h5>
-                                <h2 class="card-text">42</h2>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title">Today Alerts</h5>
+                  <h2 class="card-text">5</h2>
                 </div>
-
-                <!-- Charts Row -->
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                Blinks Per Minute Over Time
-                            </div>
-                            <div class="card-body">
-                                <canvas id="blinksChart" class="chart-container"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                Head Movements
-                            </div>
-                            <div class="card-body">
-                                <canvas id="headMovementsChart" class="chart-container"></canvas>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title">Total Alerts</h5>
+                  <h2 class="card-text">42</h2>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <!-- Driving Session Summary -->
-                <div class="card mb-4">
-                    <div class="card-header">
-                        Driving Session Summary
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>Trip Start Time:</strong> 2025-08-25 08:00 AM</li>
-                            <li class="list-group-item"><strong>Trip End Time:</strong> 2025-08-25 10:00 AM</li>
-                            <li class="list-group-item"><strong>Duration of Safe Driving Before First Alert:</strong> 1 hour 15 minutes</li>
-                            <li class="list-group-item"><strong>Total Number of Drowsiness Alerts:</strong> 3</li>
-                            <li class="list-group-item"><strong>Recommendation:</strong> Next time, rest after 1.5 hours.</li>
-                        </ul>
-                    </div>
+          <!-- Charts Row -->
+          <div class="row">
+            <div class="col-xl-6">
+              <div class="card mb-4">
+                <div class="card-header">Blinks Per Minute Over Time</div>
+                <div class="card-body">
+                  <canvas id="blinksChart" class="chart-container"></canvas>
                 </div>
-
-                <!-- Recent Sessions Table -->
-                <div class="card">
-                    <div class="card-header">
-                        Recent Driving Sessions
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Duration</th>
-                                    <th>Alerts</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2025-08-25</td>
-                                    <td>2 hours</td>
-                                    <td>3</td>
-                                    <td><span class="badge bg-success">Completed</span></td>
-                                    <td><button class="btn btn-sm btn-primary">Details</button></td>
-                                </tr>
-                                <tr>
-                                    <td>2025-08-24</td>
-                                    <td>1.5 hours</td>
-                                    <td>2</td>
-                                    <td><span class="badge bg-success">Completed</span></td>
-                                    <td><button class="btn btn-sm btn-primary">Details</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <div class="card mb-4">
+                <div class="card-header">Head Movements</div>
+                <div class="card-body">
+                  <canvas
+                    id="headMovementsChart"
+                    class="chart-container"
+                  ></canvas>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <!-- Live Status Tab -->
-                <div id="liveStatusDashboard">
-                     <h3>Live Status</h3>
-                             <div class="d-flex gap-3 mt-3">
-                                 <div>
-          <strong>Connection:</strong>
-          <span id="liveConnectionStatus" class="badge bg-secondary">Loading...</span>
+          <!-- Driving Session Summary -->
+          <div class="card mb-4">
+            <div class="card-header">Driving Session Summary</div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <strong>Trip Start Time:</strong> 2025-08-25 08:00 AM
+                </li>
+                <li class="list-group-item">
+                  <strong>Trip End Time:</strong> 2025-08-25 10:00 AM
+                </li>
+                <li class="list-group-item">
+                  <strong>Duration of Safe Driving Before First Alert:</strong>
+                  1 hour 15 minutes
+                </li>
+                <li class="list-group-item">
+                  <strong>Total Number of Drowsiness Alerts:</strong> 3
+                </li>
+                <li class="list-group-item">
+                  <strong>Recommendation:</strong> Next time, rest after 1.5
+                  hours.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Recent Sessions Table -->
+          <div class="card">
+            <div class="card-header">Recent Driving Sessions</div>
+            <div class="card-body">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Alerts</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2025-08-25</td>
+                    <td>2 hours</td>
+                    <td>3</td>
+                    <td><span class="badge bg-success">Completed</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-primary">Details</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2025-08-24</td>
+                    <td>1.5 hours</td>
+                    <td>2</td>
+                    <td><span class="badge bg-success">Completed</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-primary">Details</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Live Status Tab -->
+          <div id="liveStatusDashboard">
+            <h3>Live Status</h3>
+            <div class="d-flex gap-3 mt-3">
+              <div>
+                <strong>Connection:</strong>
+                <span id="liveConnectionStatus" class="badge bg-secondary"
+                  >Loading...</span
+                >
+              </div>
+              <div>
+                <strong>Alert:</strong>
+                <span id="liveCurrentAlert" class="badge bg-secondary"
+                  >Loading...</span
+                >
+              </div>
+            </div>
+            <canvas id="liveBlinksChart" class="mt-4"></canvas>
+            <canvas id="liveHeadMovementsChart" class="mt-4"></canvas>
+
+            <table id="liveSessionTable" class="table table-hover mt-3">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Duration</th>
+                  <th>Alerts</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </main>
       </div>
-      <div>
-          <strong>Alert:</strong>
-          <span id="liveCurrentAlert" class="badge bg-secondary">Loading...</span>
-      </div>
-  </div>
-  <canvas id="liveBlinksChart" class="mt-4"></canvas>
-  <canvas id="liveHeadMovementsChart" class="mt-4"></canvas>
-
-  <table id="liveSessionTable" class="table table-hover mt-3">
-      <thead>
-          <tr>
-              <th>Date</th>
-              <th>Duration</th>
-              <th>Alerts</th>
-              <th>Status</th>
-          </tr>
-      </thead>
-      <tbody>
-          <!-- Populated dynamically -->
-      </tbody>
-  </table>
-</div>
-
-            </main>
-        </div>
     </div>
 
     <!-- Bootstrap JS -->
@@ -211,5 +256,5 @@
     <script src="script.js"></script>
 
     <script src="stylelive.css"></script>
-</body>
+  </body>
 </html>
